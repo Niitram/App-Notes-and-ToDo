@@ -1,0 +1,10 @@
+export const ADD_ToDo = "ADD_ToDo";
+export const DELETE_ToDo = "DELETE_ToDo";
+export const GET_ALL_ToDo = "GET_ALL_ToDo";
+export const ADD_NOTES = "ADD_NOTES";
+export const DELETE_NOTES = "DELETE_NOTES";
+export const GET_ALL_NOTES = "GET_ALL_NOTES";
+export const ADD_LIST_ToDo = "ADD_LIST_ToDo";
+export const DELETE_LIST_ToDo = "DELETE_LIST_ToDo";
+export const FINISHED_ToDo = "FINISHED_ToDo";
+export const ADD_NAME_LIST_TODO = "ADD_NAME_LIST_TODO";

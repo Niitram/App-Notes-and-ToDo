@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./assets/images/Bg-Black.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.window{
+    display: flex;
+    height: 400px;
+    border-radius: 30px;
+    background-color: rgba(6, 6, 73, 0.377);
+    box-shadow: 3px 4px 5px 3px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 4px 5px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 4px 5px 3px rgba(0,0,0,0.75);
+    padding: 30px;
+}
