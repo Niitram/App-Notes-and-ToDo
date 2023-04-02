@@ -1,10 +1,12 @@
 .container{
     display: flex;
     justify-content: space-between;
-    background-color: #1e192f;
+    background-color: #20252b;
     color: aliceblue;
     min-width: 350px;
+    max-width: 350px;
     border-radius: 10px;
+    
     margin-top: 5px;
     margin-bottom: 10px;
     padding-left: 10px;
@@ -22,6 +24,8 @@
 }
 .description{
     align-items: flex-start;
+    max-width: 300px;
+    word-wrap: break-word;
 }
 
 .button {

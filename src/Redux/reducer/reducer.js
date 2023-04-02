@@ -45,6 +45,20 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case ADD_LIST_ToDo:
+            //Chequea que la lista que llega por payload exista o no en la lista de tareas y si existe lo modifica con lo que trae nuevo
+            const encontrado = state.allTodo.find(todos => todos.id === action.payload.id)
+            if (encontrado) {
+                const index = state.allTodo.findIndex((obj) => obj.id === action.payload.id);
+                const newTasks = [...state.allTodo];
+                newTasks[index] = {
+                    ...newTasks[index],
+                    ...action.payload,
+                };
+                return {
+                    ...state,
+                    allTodo: newTasks
+                }
+            }
             return {
                 ...state,
                 allTodo: [...state.allTodo, action.payload]
