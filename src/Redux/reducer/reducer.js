@@ -1,11 +1,11 @@
-import { ADD_ToDo, DELETE_ToDo, GET_ALL_ToDo, DELETE_NOTES, ADD_NOTES, GET_ALL_NOTES, DELETE_LIST_ToDo, ADD_LIST_ToDo, FINISHED_ToDo, ADD_NAME_LIST_TODO } from "../actions/types";
+import { ADD_ToDo, DELETE_ToDo, GET_ALL_ToDo, DELETE_NOTES, ADD_NOTES, GET_ALL_NOTES, DELETE_LIST_ToDo, ADD_LIST_ToDo, FINISHED_ToDo, ADD_NAME_LIST_TODO, SELECTED_ToDo } from "../actions/types";
 
 
 const initialState = {
     allNotes: [],
     allTodo: [],
     listTodo: [],
-
+    selectedToDo: null
 }
 
 
@@ -72,6 +72,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+
+        case SELECTED_ToDo:
+            const index = state.allTodo.findIndex((obj) => obj.id == action.payload);
+            return {
+                ...state,
+                selectedToDo: { ...state.allTodo[index] }
+            };
 
         /* LOGICA DE NOTES */
         case ADD_NOTES:

@@ -1,4 +1,4 @@
-import { ADD_ToDo, DELETE_ToDo, GET_ALL_ToDo, DELETE_NOTES, ADD_NOTES, GET_ALL_NOTES, DELETE_LIST_ToDo, ADD_LIST_ToDo, FINISHED_ToDo, ADD_NAME_LIST_TODO } from "./types"
+import { SELECTED_ToDo, ADD_ToDo, DELETE_ToDo, GET_ALL_ToDo, DELETE_NOTES, ADD_NOTES, GET_ALL_NOTES, DELETE_LIST_ToDo, ADD_LIST_ToDo, FINISHED_ToDo, ADD_NAME_LIST_TODO } from "./types"
 
 const URL_HOLDER = "https://jsonplaceholder.typicode.com/todos"
 
@@ -45,6 +45,13 @@ export const getAllToDo = () => {
         fetch(`URL_HOLDER`)
             .then(response => response.json())
             .then(response => dispatch({ type: GET_ALL_ToDo, payload: response }))
+    }
+}
+
+export const selectedToDo = (id) => {
+    return {
+        type: SELECTED_ToDo,
+        payload: id
     }
 }
 

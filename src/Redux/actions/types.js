@@ -8,3 +8,4 @@ export const ADD_LIST_ToDo = "ADD_LIST_ToDo";
 export const DELETE_LIST_ToDo = "DELETE_LIST_ToDo";
 export const FINISHED_ToDo = "FINISHED_ToDo";
 export const ADD_NAME_LIST_TODO = "ADD_NAME_LIST_TODO";
+export const SELECTED_ToDo = "SELECTED_ToDo";

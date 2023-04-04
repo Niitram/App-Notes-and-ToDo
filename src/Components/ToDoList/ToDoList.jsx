@@ -1,10 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from "./ToDoList.module.css"
+import { selectedToDo } from '../../Redux/actions/actions'
 
 function ToDoList() {
 
     const allTodo = useSelector(state=>state.allTodo)
+    const dispatch = useDispatch()
+
+    const handlerSelectToDo=(e)=>{
+        dispatch(selectedToDo(e.target.id))
+    }
 
     return (
         <div className={styles.container}>
@@ -12,8 +18,14 @@ function ToDoList() {
             <ul className={styles.ul}>
             {allTodo?.map((listTodo)=>{
                 return <>
-                    <li>{listTodo.taskTitle}</li>
-                </>
+                            <li 
+                                key={listTodo.id}
+                                onClick={(e)=>{
+                                    handlerSelectToDo(e)
+                                }}
+                                id={listTodo.id}
+                            >{listTodo.taskTitle}</li>
+                        </>
             })}
             </ul>
         </div>

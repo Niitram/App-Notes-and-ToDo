@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import { addToDo, finishedToDo, addListToDo } from '../../Redux/actions/actions'
+import { addToDo, addListToDo } from '../../Redux/actions/actions'
 import styles from "./ToDoNow.module.css"
 import Todo from '../ToDo/Todo'
 import { GoLogoGist, GoPlus } from "react-icons/go";
@@ -20,12 +20,13 @@ function ToDoNow() {
     const [input,setInput]=useState({
         finished:false,
         description:"",
-        id:1
+        id:Math.round(Math.random() * 100000000)
     })
     //Se crea el estado del input del titulo para poder ir tomando los datos del titulo
     const [task,setTitle]=useState({
         taskTitle:"",
-        tasklist: []
+        tasklist: [],
+        id:Math.round(Math.random() * 100000000)
     })
     //Estado para hacer seguimiento de los errores
     const [errorsTitle,setErrorsTitle]=useState({
@@ -60,26 +61,59 @@ function ToDoNow() {
     return (
         <div className={styles.container}>
             <div>
+                {/* Agregar un boton que ejecute el dispatch de guardar la lista */}
+
+                {/* -------------------- */}
                 {task.taskTitle && <h1>{task.taskTitle}</h1>}
                 {errorsTitle.taskTitle?<span>{errorsTitle.taskTitle}</span>:<span></span>}
-                <form onSubmit={(e)=>{handlerSubmitListTask(e,errorsTitle,setTitle,dispatch,addListToDo,task,listTodo)}} action="">
-                    <input className={styles.inputTitle} value={task.taskTitle} onChange={(e)=>{handlerTitle(e,setErrorsTitle, validateTitle,errorsTitle,setTitle,task)}} name="taskTitle" type="text" placeholder='Task Title'/>
+                <form 
+                    onSubmit={
+                        (e)=>{handlerSubmitListTask(e,errorsTitle,setTitle,dispatch,addListToDo,task,listTodo)}
+                    } 
+                    action=""
+                >
+                    <input 
+                        className={`${styles.inputTitle} ${errorsTitle.taskTitle&&styles.shake}`} 
+                        value={task.taskTitle} 
+                        onChange={
+                            (e)=>{handlerTitle(e,setErrorsTitle, validateTitle,errorsTitle,setTitle,task)}
+                            } 
+                        name="taskTitle" 
+                        type="text" 
+                        placeholder='Task Title'
+                    />
                     <button className={styles.btnAdd} type="submit">Add title</button>
                 </form>
-                
+                {/* ----------------- */}
+
+
+
                 <span>{`${dia}/${mes}/${anio}`}</span>
             </div>
             <div>
-                <form onSubmit={(e)=>{handlerSubmit(e,errorsToDo,dispatch,addToDo,input,setInput,setErrorsToDo,validateToDo)}} action="">
+                <form 
+                    onSubmit={(e)=>{
+                        handlerSubmit(e,errorsToDo,dispatch,addToDo,input,setInput,setErrorsToDo,validateToDo)
+                    }} 
+                    action="">
                     <button className={styles.btnAdd} type="submit"><GoPlus/></button>
-                    <input className={styles.inputTask} onChange={(e)=>{
-                        handlerChanges(e, setErrorsToDo,validateToDo,setInput,input)
-                    }} value={input.description} placeholder='Add new task' type="text" name="description" id="" />
+                    <input 
+                        className={styles.inputTask} 
+                        onChange={(e)=>{
+                            handlerChanges(e, setErrorsToDo,validateToDo,setInput,input)
+                            }} 
+                        value={input.description} 
+                        placeholder='Add new task' 
+                        type="text" 
+                        name="description" 
+                        id="" 
+                    />
                 </form>
                 <ul className={styles.ul}>
                     {
-                        listTodo.map((tasks)=>{
-                            return <Todo 
+                        listTodo.map((tasks,index)=>{
+                            return <Todo
+                            key={index}
                             description={tasks.description}
                             id={tasks.id}  
                             finished={tasks.finished} 

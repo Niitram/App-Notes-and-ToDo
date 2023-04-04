@@ -8,7 +8,7 @@ import { deleteToDo ,finishedToDo } from '../../Redux/actions/actions';
 function Todo({description, id , finished }) {
     const dispatch = useDispatch()
     return (
-        <div key={id} className={`${styles.container} ${finished?styles.clase2:styles.clase1}`}>
+        <div className={`${styles.container} ${finished?styles.clase2:styles.clase1}`}>
             <span className={styles.description} >{description}</span>
             <div>
                 <button className={styles.button} onClick={()=>{handlerDelete(id,dispatch,deleteToDo)}}><GoTrashcan/></button>
